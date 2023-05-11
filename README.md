@@ -40,6 +40,20 @@ Duas funções muito importantes que esteja sempre presente (sys_calls). O examp
 
 Todas essas funções fazem ( por enquanto! ) é printk() uma sequência do buffer do kernel ( que você vê o conteúdo do uso dmesg). Este printk() função é muito parecido com o mais familiar printf(), exceto nós sempre comece com um KERN_* macro que define o nível de log da mensagem ( ver aqui para todos os níveis possíveis de log ). Nós sempre usaremos KERN_INFO ou KERN_DEBUG. Observe que essa macro faz não pertencem a citações como o resto da corda! Também podemos usar cadeias de formato em printk() assim como em printf() qual será o nosso principal método de extrair dados do kernel quando estivermos depurando.
 
+Para compilar vamos user o codigo make abaixo:
+
+```Makefile
+
+obj-m += SalveKern.o
+
+all:
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+
+```
+
 Referencias
 --
 - [Diamorphine](https://github.com/m0nad/Diamorphine)
